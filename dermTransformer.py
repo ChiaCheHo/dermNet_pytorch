@@ -39,22 +39,23 @@ val_data = []
 
 for folder in os.listdir(data_path):
     folder_path = os.path.join(data_path, folder)
-    files = os.listdir(folder_path)
-    num_train = int(0.8 * len(files))
-    files_train = random.sample(files, num_train)
-    files_val = list(set(files) - set(files_train))
-    
-    for file in files_train:
-        file_path = os.path.join(folder_path, file)
-        img = cv2.imread(file_path)
-        img = cv2.resize(img, (224, 224))
-        train_data.append((img, folder))
+    if os.path.isdir(folder_path):  # 確保只處理資料夾
+        files = os.listdir(folder_path)
+        num_train = int(0.8 * len(files))
+        files_train = random.sample(files, num_train)
+        files_val = list(set(files) - set(files_train))
         
-    for file in files_val:
-        file_path = os.path.join(folder_path, file)
-        img = cv2.imread(file_path)
-        img = cv2.resize(img, (224, 224))
-        val_data.append((img, folder))
+        for file in files_train:
+            file_path = os.path.join(folder_path, file)
+            img = cv2.imread(file_path)
+            img = cv2.resize(img, (224, 224))
+            train_data.append((img, folder))
+            
+        for file in files_val:
+            file_path = os.path.join(folder_path, file)
+            img = cv2.imread(file_path)
+            img = cv2.resize(img, (224, 224))
+            val_data.append((img, folder))
 
 # 資料預處理
 le = LabelEncoder()
