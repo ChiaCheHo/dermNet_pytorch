@@ -6,6 +6,7 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader
+from torchvision import models, transforms  # 增加對 transforms 的導入
 import timm  # 用於導入 Vision Transformer
 import matplotlib.pyplot as plt
 from sklearn.preprocessing import LabelEncoder
