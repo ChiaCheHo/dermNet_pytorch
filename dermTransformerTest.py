@@ -1,8 +1,9 @@
 import torch
+import torch.nn as nn  # 確保 nn 已正確導入
 import cv2
 import numpy as np
 from torchvision import transforms
-import timm  # 用於導入 Vision Transformer
+import timm
 import matplotlib.pyplot as plt
 import os
 
